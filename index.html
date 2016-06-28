@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Manager</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="app/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <header class="bs-header">
+      <div class="container">
+        <h1>Contact Manager</h1>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 main-container">
+        </div>
+      </div>
+    </div>
+
+    <script type="text/template" id="tpl-users">
+      <h2 class="page-header text-center">List of contacts</h2>
+      <p class="text-center">
+        <a href="#users/new" class="btn btn-lg btn-outline">Add User</a>
+      </p>
+      <ul class="media-list row users-container"></ul>
+    </script>
+
+    <script type="text/template" id="tpl-user">
+      <div class="thumbnail">
+        <img class="media-object" src="<%- avatar %>">
+      </div>
+      <div class="media-heading">
+        <h3>
+          <%- name %>
+          <small>
+            <a href="#users/edit/<%- id %>"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="#users/delete/<%- id %>" class="delete-user">
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
+          </small>
+        </h3>
+      </div>
+      <div class="media-body">
+        <ul>
+          <li>City: <%- city %></li>
+          <li>Email: <%- email %></li>
+
+        </ul>
+
+      </div>
+      <hr>
+    </script>
+    <script type="text/template" id="tpl-new-user">
+      <h2 class="page-header text-center"><%= isNew ? 'Create' : 'Edit' %> User</h2>
+      <form role="form" class="form-horizontal user-form">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Full name:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control user-name-input" value="<%- name %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Username:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control user-username-input" value="<%- username %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">City:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control user-city-input" value="<%- city %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Email address:</label>
+          <div class="col-sm-6">
+            <input type="email" class="form-control user-email-input" value="<%- email %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Address:</label>
+          <div class="col-sm-6">
+            <%=this.insertAddress(address)%>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Phone:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control user-phone-input" value="<%- phone %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Website:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control user-website-input" value="<%- website %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-sm-3">
+            <button type="submit" class="btn btn-outline btn-lg btn-block">Submit</button>
+          </div>
+          <div class="col-sm-3">
+            <a href="#users" class="btn btn-outline btn-lg btn-block">Cancel</a>
+          </div>
+        </div>
+      </form>
+    </script>
+
+    <script src="vendor/jquery.js"></script>
+    <script src="vendor/underscore.js"></script>
+    <script src="vendor/backbone.js"></script>
+    <script src="vendor/backbone-component.js"></script>
+
+    <script src="app/js/app.js"></script>
+    <script src="app/js/models/user.js"></script>
+    <script src="app/js/collections/users.js"></script>
+    <script src="app/js/views/user.js"></script>
+    <script src="app/js/views/users.js"></script>
+    <script src="app/js/views/user_form.js"></script>
+    <script src="app/js/components/address.js"></script>
+    <script src="app/js/router.js"></script>
+    <script src="app/js/init.js"></script>
+
+
+  </body>
+</html>
