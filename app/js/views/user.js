@@ -1,6 +1,6 @@
 UserManager.Views.User = Backbone.View.extend({
   tagName: 'li',
-  className: 'col-md-6',
+  className: 'col-md-4',
   template: _.template($('#tpl-user').html()),
 
   events: {

@@ -29,8 +29,18 @@ window.UserManager = {
 
       newUserForm.on('form:submitted', function(attrs) {
         attrs.id = users.isEmpty() ? 1 : (_.max(users.pluck('id')) + 1);
-        users.add(attrs);
-        router.navigate('users', true);
+        $.ajax(root + "/users", {
+            method: 'POST',
+            data: {
+              email: attrs.email,
+              website:attrs.website,
+              userId: attrs.id
+          }
+          }).then(function(data) {
+            console.log(data);
+            users.add(attrs);
+            router.navigate('users', true);
+          });
       });
 
       $('.main-container').html(newUserForm.render().$el);
@@ -46,10 +56,19 @@ window.UserManager = {
         });
 
         editUserForm.on('form:submitted', function(attrs) {
-          user.set(attrs);
-          router.navigate('users', true);
+          $.ajax(root + "/users/" + id, {
+              method: 'PUT',
+              data: {
+                email: attrs.email,
+                website:attrs.website,
+                userId: attrs.id
+              }
+            }).then(function(data) {
+                console.log(data);
+                user.set(attrs);
+                router.navigate('users', true);
+          });
         });
-
         $('.main-container').html(editUserForm.render().$el);
       } else {
         router.navigate('users', true);
